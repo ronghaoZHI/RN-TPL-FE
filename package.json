@@ -1,18 +1,33 @@
 {
   "name": "my-app",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "index.ts",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "expo:bundle:android-hermes": "expo export --platform android",
+    "expo:bundle:ios-hermes": "expo export --platform ios",
+    "expo:bundle:web": "expo export --platform web",
+    "bundle:ios-js": "npx react-native bundle --entry-file index.ts --platform ios --dev false --minify false --bundle-output ./dist/index.ios.jsbundle --assets-dest ./dist/assets-ios",
+    "bundle:android-js": "npx react-native bundle --entry-file index.ts --platform android --dev false --minify false --bundle-output ./dist/index.android.bundle --assets-dest ./dist/assets-android",
+    "compile:ios-hbc": "npm run bundle:ios-js && node_modules/react-native/sdks/hermesc/osx-bin/hermesc -emit-binary -out ./dist/index.ios.hbc ./dist/index.ios.jsbundle",
+    "compile:android-hbc": "npm run bundle:android-js && node_modules/react-native/sdks/hermesc/osx-bin/hermesc -emit-binary -out ./dist/index.android.hbc ./dist/index.android.bundle",
+    "bundle:common:ios": "npx react-native bundle --config=metro.config.js --dev false --entry-file=./common/index.js --bundle-output=./dist/common.ios.jsbundle --platform=ios --minify false",
+    "bundle:common:android": "npx react-native bundle --config=metro.config.js --dev false --entry-file=./common/index.js --bundle-output=./dist/common.android.bundle --platform=android --minify false",
+    "bundle:split:ios": "npm run bundle:common:ios && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/index.ios.jsbundle --platform=ios --minify false --assets-dest ./dist/assets-ios",
+    "bundle:split:android": "npm run bundle:common:android && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/index.android.bundle --platform=android --minify false --assets-dest ./dist/assets-android"
   },
   "dependencies": {
+    "@expo/webpack-config": "^19.0.1",
     "expo": "~49.0.23",
-    "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
-    "react-native": "0.72.10"
+    "react-dom": "18.2.0",
+    "react-native": "0.72.5",
+    "react-native-web": "^0.20.0",
+    "typescript": "^5.1.3",
+    "@types/react": "~18.2.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
