@@ -3,13 +3,24 @@
  * 这里导入所有需要放入common bundle的库
  */
 
-// React 基础库
-import 'react';
-import 'react-dom';
-import 'react-native';
+// 导入React基础库
+const React = require('react');
+const ReactDOM = require('react-dom');
+const ReactNative = require('react-native');
 
 // 可选：如果您使用了其他基础库也可以在这里导入
 // import 'react-native-web';
 
-// 导出一个空对象，确保文件有输出
-export default {}; 
+// 显式导出基础库，确保它们被包含在common包中
+module.exports = {
+  React,
+  ReactDOM,
+  ReactNative,
+  // 可以在此添加其他基础库
+};
+
+// 执行一些基础库的代码，确保它们被正确打包
+console.log('Common bundle loaded');
+
+// 标记该模块被加载
+global.__COMMON_BUNDLE_LOADED__ = true; 
