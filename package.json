@@ -16,8 +16,8 @@
     "compile:android-hbc": "npm run bundle:android-js && node_modules/react-native/sdks/hermesc/osx-bin/hermesc -emit-binary -out ./dist/index.android.hbc ./dist/index.android.bundle",
     "bundle:common:ios": "npx react-native bundle --config=metro.config.js --dev false --entry-file=./common/index.js --bundle-output=./dist/common.ios.jsbundle --platform=ios --minify false",
     "bundle:common:android": "npx react-native bundle --config=metro.config.js --dev false --entry-file=./common/index.js --bundle-output=./dist/common.android.bundle --platform=android --minify false",
-    "bundle:split:ios": "npm run bundle:common:ios && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/index.ios.jsbundle --platform=ios --minify false --assets-dest ./dist/assets-ios",
-    "bundle:split:android": "npm run bundle:common:android && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/index.android.bundle --platform=android --minify false --assets-dest ./dist/assets-android"
+    "bundle:split:ios": "npm run bundle:common:ios && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/buz.ios.jsbundle --platform=ios --minify false --assets-dest ./dist/assets-ios",
+    "bundle:split:android": "npm run bundle:common:android && npx react-native bundle --config=metro.config.js --dev false --entry-file=index.ts --bundle-output=./dist/buz.android.bundle --platform=android --minify false --assets-dest ./dist/assets-android"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.1",

@@ -5,7 +5,7 @@
 该项目引入了 Metro 的 bundle 拆包方案，将应用分为两个主要部分：
 
 1. **common.jsbundle** - 包含 React 相关基础库（如 react、react-dom、react-native）
-2. **index.jsbundle** - 包含业务代码
+2. **buz.jsbundle** - 包含业务代码
 
 这种拆分可以有效减小业务包体积，提高应用加载速度和更新效率。基础库很少变动，而业务代码经常更新，拆分后只需要更新业务包。
 
@@ -20,7 +20,7 @@ npm run bundle:split:ios
 
 执行后将在 `./dist` 目录下生成：
 - `common.ios.jsbundle` - 基础库包
-- `index.ios.jsbundle` - 业务代码包
+- `buz.ios.jsbundle` - 业务代码包
 - `assets-ios` 目录 - 资源文件
 
 ### Android 平台
@@ -32,7 +32,7 @@ npm run bundle:split:android
 
 执行后将在 `./dist` 目录下生成：
 - `common.android.bundle` - 基础库包
-- `index.android.bundle` - 业务代码包
+- `buz.android.bundle` - 业务代码包
 - `assets-android` 目录 - 资源文件
 
 ## 原生端集成
