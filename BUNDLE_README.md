@@ -47,7 +47,7 @@ NSString *commonBundlePath = [[NSBundle mainBundle] pathForResource:@"common.ios
 [bridge loadBundleAtURL:[NSURL URLWithString:commonBundlePath] onComplete:^(NSError *error) {
   if (!error) {
     // 再加载业务bundle
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"index.ios" ofType:@"jsbundle"];
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"buz.ios" ofType:@"jsbundle"];
     [bridge loadBundleAtURL:[NSURL URLWithString:bundlePath] onComplete:nil];
   }
 }];
@@ -63,7 +63,7 @@ ReactInstanceManager.Builder builder = ReactInstanceManager.builder()
   .setJSBundleFile("assets://common.android.bundle");
 
 // 加载业务bundle
-reactContext.getCatalystInstance().loadScriptFromFile("assets://index.android.bundle", null, false);
+reactContext.getCatalystInstance().loadScriptFromFile("assets://buz.android.bundle", null, false);
 ```
 
 ## 注意事项

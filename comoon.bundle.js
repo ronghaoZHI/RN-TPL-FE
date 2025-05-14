@@ -5,7 +5,6 @@
 
 // 导入React基础库
 const React = require('react');
-const ReactDOM = require('react-dom');
 const ReactNative = require('react-native');
 
 // 可选：如果您使用了其他基础库也可以在这里导入
@@ -14,7 +13,6 @@ const ReactNative = require('react-native');
 // 显式导出基础库，确保它们被包含在common包中
 module.exports = {
   React,
-  ReactDOM,
   ReactNative,
   // 可以在此添加其他基础库
 };

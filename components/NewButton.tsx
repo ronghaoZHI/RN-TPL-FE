@@ -7,13 +7,13 @@ interface ButtonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Button = ({ title = '按钮', onPress = () => { console.log('点击了') }, style }: ButtonProps) => {
+const Button = React.forwardRef(({ title = '按钮', onPress = () => { console.log('点击了') }, style }: ButtonProps, ref) => {
   return (
     <Pressable style={[styles.button, style]} onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
     </Pressable>
   );
-};
+});
 
 const styles = StyleSheet.create({
   button: {
@@ -30,3 +30,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
+
+export default Button
+
