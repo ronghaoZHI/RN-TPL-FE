@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View, DeviceEventEmitter } from 'react-native';
-import CounterDemo from './components/CounterDemo';
+// import CounterDemo from './components/CounterDemo';
 import NewButton from './components/NewButton';
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
       {/*  */}
       <Text style={styles.header}>TurboModule 示例</Text>
       <View style={styles.demoContainer}>
-        <CounterDemo />
+        {/* <CounterDemo /> */}
       </View>
     </SafeAreaView>
   );
