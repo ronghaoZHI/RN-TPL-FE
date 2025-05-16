@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View, DeviceEventEmitter } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 // import CounterDemo from './components/CounterDemo';
 import NewButton from './components/NewButton';
 
 export default function App() {
   const [result, setResult] = useState<number | null>(null);
 
-  DeviceEventEmitter.addListener('TimeOutEvent', event => {
-    console.log('TimeOutEvent', event);
-    // 从事件数据中获取 result 值
-    if (event.params && event.params.result !== undefined) {
-      setResult(event.params.result);
-    }
-  });
+  // DeviceEventEmitter.addListener('TimeOutEvent', event => {
+  //   console.log('TimeOutEvent', event);
+  //   // 从事件数据中获取 result 值
+  //   if (event.params && event.params.result !== undefined) {
+  //     setResult(event.params.result);
+  //   }
+  // });
 
   return (
     <SafeAreaView style={styles.container}>

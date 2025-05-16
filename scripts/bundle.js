@@ -2,6 +2,24 @@
 // 如果是 harmony 则使用，shell 执行 react-native bundle-harmony 命令
 // 如果是 ios|android 则使用，shell 执行 react-native bundle 命令
 
+// bundle 拆包方案：
+// Todo：第一版实现 base 包 + buz-page 包
+// 第二版实现 base 包 + common 包 + buz-page 包 
+// 名词解释：
+//  base 包： 基础包，包含基础固定版本的库。内置到 app。react-native@0.72.5 react@18.2.0
+//  common 包：buz-common 业务公共包， 包含基础组件，需要支持热更新版本。比如 js-rn-components 公共基础组件，基础库
+//  buz-page 包：buz-page 业务页面代码包，包含业务组件，需要支持热更新版本。 
+//  <---->
+// 定义业务包名名称（非base 包） 命名规则: 
+// 业务包名命名规则： ${业务线}_${项目sic集群名称}_${页面名称默认为 page}.${platform}.bundle
+// registerComponent appName 命名规则： ${业务线}_${项目sic集群名称}_${页面名称默认为 page}
+// TODO: 业务包 与 统跳地址的映射  与 webview-url 的映射  metadata.json 
+
+const buzLine = ''; // 业务线
+const sicName = ''; // 项目sic集群名称
+const pageName = 'page'; // 页面名称
+const buzBundleName = `${buzLine}_${sicName}_${pageName}`; // 业务包名
+
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -42,7 +60,7 @@ function bundle() {
     }
     // 如果未指定输出路径，使用默认的base输出路径
     if (!bundleOutput) {
-      bundleOutput = path.join(rootDir, `dist/bundle/${platform}/base_${platform}.bundle`);
+      bundleOutput = path.join(rootDir, `dist/bundle/${platform}/base.${platform}.bundle`);
     }
   } else if (type === 'page') {
     // 如果未指定入口文件，使用默认的page入口
@@ -51,9 +69,10 @@ function bundle() {
     }
     // 如果未指定输出路径，使用默认的page输出路径
     if (!bundleOutput) {
-      bundleOutput = path.join(rootDir, `dist/bundle/${platform}/page_${platform}.bundle`);
+      bundleOutput = path.join(rootDir, `dist/bundle/${platform}/${buzBundleName}.${platform}.bundle`);
     }
   } else if (type === 'all') {
+    // 该包用来测试用
     // 如果未指定入口文件，使用默认的page入口
     if (!entryFile) {
       entryFile = path.join(rootDir, 'scripts/page.js');
